@@ -29,6 +29,24 @@ var albumMarconi = {
     ]
 };
 
+//My album Example
+var albumCamada = {
+    title: 'Expecto',
+    artist: 'Camada',
+    label: 'GI',
+    year: '1962',
+    albumArtUrl: 'http://vinylcoverart.com/pics/s/balance-and-composure-separation-big.jpg',
+    songs: [
+        { title: 'Quiet', duration: '3:07' },
+        { title: 'Amp', duration: '4:21' },
+        { title: 'The way you say my name', duration: '2:22'},
+        { title: 'Latix', duration: '3:14' },
+        { title: 'Short sleeve', duration: '7:23'}
+    ]
+};
+
+
+
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -70,4 +88,13 @@ var createSongRow = function(songNumber, songName, songLength) {
      setCurrentAlbum(albumMarconi);
  };
 
- 
+ var threeAlbums = [albumPicasso, albumMarconi, albumCamada]
+ var i=0;
+
+ albumImage.addEventListener("click", function(){
+   setCurrentAlbum(threeAlbums[i]);
+   i++;
+   if( i === threeAlbums.length){
+     i =0;
+   }
+ });
