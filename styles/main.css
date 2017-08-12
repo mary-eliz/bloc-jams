@@ -78,15 +78,12 @@ html {
 /* Medium and small screens (640px) */
  @media (min-width: 640px) {
    html { font-size: 112%; }
-   /* Style information will go here */
- }
 
  .column {
           float: left;
           padding-left: 1rem;
           padding-right: 1rem;
       }
-  }
 
   .column.full { width: 100%; }
      .column.two-thirds { width: 66.7%; }
@@ -100,7 +97,7 @@ html {
  /* Large screens (1024px) */
  @media (min-width: 1024px) {
    html { font-size: 120%; }
-   /* Style information will go here */
+
  }
 
  .clearfix::before,
