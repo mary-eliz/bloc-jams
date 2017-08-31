@@ -89,11 +89,19 @@ var createSongRow = function(songNumber, songName, songLength) {
 var findParentByClassName = function(element, targetClass) {
     if (element) {
         var currentParent = element.parentElement;
-        while (currentParent.className !== targetClass && currentParent.className !== null) {
-            currentParent = currentParent.parentElement;
+        if (currentParent === 'null'){
+          console.log("No parent found")
         }
+        else{
+          while (currentParent.className !== targetClass && currentParent.className !== null) {
+            currentParent = currentParent.parentElement;
+          }
+          if (currentParent.className === 'null'){
+          console.log("No parent found with that class name")
+          }
         return currentParent;
     }
+  }
 };
 
 
@@ -150,10 +158,11 @@ var clickHandler = function(targetElement) {
           // Only target individual song rows during event delegation
          if (event.target.parentElement.className === 'album-view-song-item') {
                 var songItem = getSongItem(event.target);
-              }
-          if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
+
+              if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
                 songItem.innerHTML = playButtonTemplate;
-          }
+        }
+      }
         });
       for (var i = 0; i < songRows.length; i++) {
          songRows[i].addEventListener('mouseleave', function(event) {
