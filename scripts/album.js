@@ -9,6 +9,12 @@ var createSongRow = function(songNumber, songName, songLength) {
 
       var $row = $(template);
 
+            $row.find('.song-item-number').click(clickHandler);
+            $row.hover(onHover, offHover);
+            return $row;
+
+};
+
 var setSong = function (songNumber){
   currentlyPlayingSongNumber = parseInt(songNumber);
   currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
@@ -42,6 +48,7 @@ var clickHandler = function() {
     };
 
 var onHover = function(event) {
+
   var songNumberCell = $(this).find('.song-item-number');
   var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 
@@ -51,6 +58,7 @@ var onHover = function(event) {
 };
 
 var offHover = function(event) {
+
   var songNumberCell = $(this).find('.song-item-number');
   var songNumber= parseInt(songNumberCell.attr('data-song-number'));
 
@@ -60,11 +68,6 @@ var offHover = function(event) {
   console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
   };
 
-      $row.find('.song-item-number').click(clickHandler);
-      $row.hover(onHover, offHover);
-      return $row;
-
-};
 
      var $albumTitle = $('.album-view-title');
      var $albumArtist = $('.album-view-artist');
@@ -92,6 +95,11 @@ var offHover = function(event) {
   };
 
   var nextSong = function(){
+    $('.song-item-number').each(function(){
+         var number = $(this).attr("data-song-number");
+         $(this).text(number);
+     });
+
     var indexSongNumber = trackIndex(currentAlbum, currentSongFromAlbum);
     indexSongNumber++;
 
@@ -114,6 +122,11 @@ var offHover = function(event) {
 
 
   var previousSong = function(){
+    $('.song-item-number').each(function(){
+         var number = $(this).attr("data-song-number");
+         $(this).text(number);
+     });
+
     var indexSongNumber = trackIndex(currentAlbum, currentSongFromAlbum);
     indexSongNumber--;
 
