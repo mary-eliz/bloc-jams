@@ -181,8 +181,21 @@ var updatePlayerBarSong = function(){
   $('.song-name').text(currentSongFromAlbum.title);
   $('.artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
   $('.artist-name').text(currentAlbum.artist);
-
   $('.main-controls .play-pause').html(playerBarPauseButton);
+};
+
+var togglePlayFromPlayerBar= function(){
+  var currentlyPlayingCell= getSongNumberCell(currentlyPlayingSongNumber);
+      if (currentSoundFile.isPaused()) {
+      currentlyPlayingCell.html(pauseButtonTemplate);
+      $playButton.html(playerBarPauseButton);
+      currentSoundFile.play();
+    }
+    else{
+      currentlyPlayingCell.html(playButtonTemplate);
+      $playButton.html(playerBarPlayButton);
+      currentSoundFile.pause();
+    }
 };
 
  var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
@@ -198,11 +211,13 @@ var updatePlayerBarSong = function(){
 
  var $previousButton = $('.main-controls .previous');
  var $nextButton = $('.main-controls .next');
+ var $playButton= $('main-controls .play-pause');
 
 $(document).ready(function() {
      setCurrentAlbum(albumPicasso);
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
+     $playButton.click(togglePlayFromPlayerBar);
 });
 
  var threeAlbums = [albumPicasso, albumMarconi, albumCamada]
