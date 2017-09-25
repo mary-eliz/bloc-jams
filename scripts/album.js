@@ -133,7 +133,7 @@ var offHover = function(event) {
     }
 
     var lastSongNumber = currentlyPlayingSongNumber;
-    currentlyPlayingSongNumber = indexSongNumber + 1;
+    setSong(indexSongNumber + 1);
     currentSoundFile.play();
     currentSongFromAlbum = currentAlbum.songs[indexSongNumber];
 
@@ -161,7 +161,7 @@ var offHover = function(event) {
     }
 
     var lastSongNumber = currentlyPlayingSongNumber;
-    currentlyPlayingSongNumber = indexSongNumber + 1;
+    setSong(indexSongNumber + 1)
     currentSoundFile.play();
     currentSongFromAlbum = currentAlbum.songs[indexSongNumber];
 
