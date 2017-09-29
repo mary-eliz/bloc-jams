@@ -3,7 +3,7 @@ var createSongRow = function(songNumber, songName, songLength) {
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
-      + '  <td class="song-item-duration">' + songLength + '</td>'
+      + '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
       + '</tr>'
       ;
 
@@ -126,6 +126,28 @@ var offHover = function(event) {
      }
  };
 
+ var setCurrentTimeInPlayerBar = function(currentTime){
+   $('.current-time').text(currentTime);
+ };
+
+ var setTotalTimeInPlayerBar = function(totalTime){
+   $('.total-time').text(totalTime);
+ };
+
+ var filterTimeCode = function(timeInSeconds){
+   var numberForm = parseFloat(timeInSeconds);
+
+   var minutes = Math.floor(numberForm/60);
+   var seconds = Math.floor(numberForm-minutes * 60);
+
+   if (seconds < 10){
+     return minutes + ":0" + seconds;
+   }
+   else{
+     return minutes + ":" +seconds;
+   }
+ };
+
  var updateSeekBarWhileSongPlays = function() {
      if (currentSoundFile) {
          // #10
@@ -135,6 +157,9 @@ var offHover = function(event) {
              var $seekBar = $('.seek-control .seek-bar');
 
              updateSeekPercentage($seekBar, seekBarFillRatio);
+             setCurrentTimeInPlayerBar(filterTimeCode(currentSoundFile.getTime()));
+             setTotalTimeInPlayerBar(filterTimeCode(currentSoundFile.getDuration()));
+
          });
      }
  };
